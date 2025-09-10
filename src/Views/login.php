@@ -37,13 +37,44 @@
                     </form>
                 </div>
                 <div class="d-flex flex-column justify-content-center">
-                    <a href="index.php?url=login" class="text-white"><i class="bi bi-person-fill display-5"></i></a>
+                    <a href="index.php?url=register" class="text-white"><i class="bi bi-person-fill display-5"></i></a>
                 </div>
             </div>
-
         </div>
     </nav>
 
+
+    <main class="container py-4">
+
+        <h1 class="text-center">Connexion</h1>
+
+        <div class="row justify-content-center">
+
+            <div class="col-6">
+
+                <form action="index.php?url=register" method="POST" novalidate>
+
+                    <div class="mb-3">
+                        <label for="pseudo" class="form-label">Pseudo</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["pseudo"] ?? '' ?></span>
+                        <input type="text" class="form-control" id="pseudo" name="pseudo" value="<?= $_POST["pseudo"] ?? "" ?>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Mot de passe</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["password"] ?? '' ?></span>
+                        <input type="password" class="form-control" id="password" name="password" value="<?= $_POST["password"] ?? "" ?>">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Connexion</button>
+
+                    <a class="d-block mt-2" href="index.php?url=register">Pas encore de compte ? Inscription</a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
 
 
     <footer class="mt-auto text-center p-4 mt-3">
