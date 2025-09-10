@@ -52,11 +52,11 @@
 
             <div class="col-6">
 
-                <form action="index.php?url=register" method="POST" novalidate>
+                <form action="index.php?url=login" method="POST" novalidate>
 
                     <div class="mb-3">
-                        <label for="pseudo" class="form-label">Pseudo</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["pseudo"] ?? '' ?></span>
-                        <input type="text" class="form-control" id="pseudo" name="pseudo" value="<?= $_POST["pseudo"] ?? "" ?>">
+                        <label for="email" class="form-label">Adresse mail</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["email"] ?? '' ?></span>
+                        <input type="email" class="form-control" id="email" name="email" value="<?= $_POST["email"] ?? "" ?>">
                     </div>
 
                     <div class="mb-3">

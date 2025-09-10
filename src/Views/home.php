@@ -24,10 +24,9 @@
 
 <body class="d-flex flex-column vh-100">
 
-
-
     <nav class="navbar">
         <div class="container-fluid">
+
             <a class="navbar-brand text-white h1 ms-3" href="index.php">AFPA'nnonces</a>
             <div class="d-flex">
                 <div>
@@ -44,7 +43,36 @@
         </div>
     </nav>
 
+    <main class="container my-4 flex-grow-1">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="mb-4 display-3">Bienvenue sur AFPA'nnonces</h1>
+                <p class="lead">Votre plateforme de petites annonces des stagiaires de l'AFPA.</p>
+            </div>
+            <div class="col-12 text-center">
+                <h2>Les dernières annonces</h2>
 
+                <div class="row mt-3">
+                    <?php for ($i = 0; $i < 9; $i++) { // boucle temporaire pour afficher les annonces ?>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <img src="https://picsum.photos/1280/720?random=<?= $i; ?>" class="card-img-top" alt="Image aléatoire">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">Une Annonce</h5>
+                                    <p class="card-text">Description de l'annonce</p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+
+                <div class="text-center">
+                    <a href="index.php?url=annonces" class="btn btn-success">Voir toutes les annonces</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
 
     <footer class="mt-auto text-center p-4 mt-3">
         <p class="m-0">Afpa - 2025 - MVC</p>
