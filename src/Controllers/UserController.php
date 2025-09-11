@@ -19,6 +19,9 @@ class UserController
                 if (empty($_POST["username"])) {
                     // si c'est vide, je créé une erreur dans mon tableau
                     $errors['username'] = 'Pseudo obligatoire';
+                } else if (User::checkUsername($_POST["username"])) {
+                    // si le pseudo déjà présent dans notre bdd, on créé un message d'erreur
+                    $errors['username'] = 'Pseudo déjà utilisé';
                 }
             }
 
@@ -30,6 +33,9 @@ class UserController
                 } else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
                     // si mail non valide, on créé une erreur
                     $errors['email'] = 'Mail non valide';
+                } else if (User::checkMail($_POST["email"])) {
+                    // si mail déjà utilisé, on créé un message d'erreur dans notre tableau
+                    $errors['email'] = 'Mail déjà utilisé';
                 }
             }
 
@@ -40,7 +46,7 @@ class UserController
                     $errors['password'] = 'Mot de passe obligatoire';
                 } else if (strlen($_POST["password"]) < 8) {
                     // si le mot de passe est trop court, on créé une erreur
-                    $errors['password'] = 'Mot de passe trop court (minimum 6 caractères)';
+                    $errors['password'] = 'Mot de passe trop court (minimum 8 caractères)';
                 }
             }
 
