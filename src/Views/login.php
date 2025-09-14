@@ -25,7 +25,6 @@
 <body class="d-flex flex-column vh-100">
 
 
-
     <nav class="navbar">
         <div class="container-fluid">
             <a class="navbar-brand text-white h1 ms-3" href="index.php">AFPA'nnonces</a>

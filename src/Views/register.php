@@ -72,7 +72,6 @@
                         <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" value="<?= $_POST["confirmPassword"] ?? "" ?>">
                     </div>
 
-
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="cgu" name="cgu">
                         <label class="form-check-label" for="cgu">J'ai lu et j'accepte les CGU</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["cgu"] ?? '' ?></span>

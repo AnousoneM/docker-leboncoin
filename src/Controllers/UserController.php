@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use Exception;
 
 class UserController
 {
@@ -64,6 +65,19 @@ class UserController
             if (!isset($_POST["cgu"])) {
                 // si la case n'est pas cochée, on créé une erreur
                 $errors['cgu'] = 'Vous devez accepter les CGU';
+            }
+
+            // nous vérifions s'il n'y a pas d'erreur = on regarde si le tableau est vide.
+            if (empty($errors)) {
+
+                // j'instancie mon objet selon la classe User
+                $objetUser = new User();
+                // je vais créer mon User selon la méthode createUser()
+                if ($objetUser->createUser($_POST["email"], $_POST["password"], $_POST["username"])) {
+                    echo 'success';
+                } else {
+                    $errors['server'] = "Une erreur s'est produite veuillez recommencerjkjklhjkljklllklii";
+                }
             }
         }
 
