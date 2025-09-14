@@ -45,30 +45,13 @@
 
     <main class="container py-4">
 
-        <h1 class="text-center">Connexion</h1>
+        <h1 class="text-center">C'est parti !!!</h1>
 
         <div class="row justify-content-center">
 
             <div class="col-6">
 
-                <form action="index.php?url=login" method="POST" novalidate>
-
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Adresse mail</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["email"] ?? '' ?></span>
-                        <input type="email" class="form-control" id="email" name="email" value="<?= $_POST["email"] ?? "" ?>">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Mot de passe</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["password"] ?? '' ?></span>
-                        <input type="password" class="form-control" id="password" name="password" value="<?= $_POST["password"] ?? "" ?>">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Connexion</button>
-                    <span class="ms-2 text-danger fst-italic fw-light"><?= $errors["connexion"] ?? '' ?></span>
-
-                    <a class="d-block mt-2" href="index.php?url=register">Pas encore de compte ? Je m'inscris !</a>
-
-                </form>
+                <p>Votre inscription a bien été prise en compte, vous pouvez maintenant <a href="index.php?url=login">vous connecter</a>.</p>
 
             </div>
 

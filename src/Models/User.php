@@ -9,6 +9,13 @@ use PDOException;
 
 class User
 {
+
+    private int $id;
+    private string $email;
+    private string $password;
+    private string $username;
+    private string $inscription;
+
     /**
      * Permet de créer un utilisateur dans la table users
      * @param string $email

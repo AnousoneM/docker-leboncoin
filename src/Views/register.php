@@ -79,7 +79,8 @@
 
                     <button type="submit" class="btn btn-primary">S'inscrire</button>
 
-                    <a class="d-block mt-2" href="index.php?url=login">Déjà inscrit ? Connexion</a>
+                    <a class="d-block mt-2" href="index.php?url=login">Déjà inscrit ? Je me connecte !</a>
+                    <span class="ms-2 text-danger fst-italic fw-light"><?= $errors["server"] ?? '' ?></span>
 
                 </form>
 

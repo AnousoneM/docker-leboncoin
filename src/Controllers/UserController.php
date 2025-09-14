@@ -72,11 +72,12 @@ class UserController
 
                 // j'instancie mon objet selon la classe User
                 $objetUser = new User();
-                // je vais créer mon User selon la méthode createUser()
+                // je vais créer mon User selon la méthode createUser() et j'essaie de créer mon User
                 if ($objetUser->createUser($_POST["email"], $_POST["password"], $_POST["username"])) {
-                    echo 'success';
+                    header('Location: index.php?url=create-success');
+                    exit;
                 } else {
-                    $errors['server'] = "Une erreur s'est produite veuillez recommencerjkjklhjkljklllklii";
+                    $errors['server'] = "Une erreur s'est produite veuillez rééssayer ultèrieurement";
                 }
             }
         }
@@ -86,6 +87,43 @@ class UserController
 
     public function login()
     {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // je créé un tableau d'erreurs vide car pas d'erreur
+            $errors = [];
+
+            if (isset($_POST["email"])) {
+                // on va vérifier si c'est vide
+                if (empty($_POST["email"])) {
+                    // si c'est vide, je créé une erreur dans mon tableau
+                    $errors['email'] = 'Mail obligatoire';
+                }
+            }
+
+            if (isset($_POST["password"])) {
+                // on va vérifier si c'est vide
+                if (empty($_POST["password"])) {
+                    // si c'est vide, je créé une erreur dans mon tableau
+                    $errors['password'] = 'Mot de passe obligatoire';
+                }
+            }
+
+            // nous vérifions s'il n'y a pas d'erreur = on regarde si le tableau est vide.
+            if (empty($errors)) {
+
+                if(User::checkMail($_POST["email"])){
+                    
+
+
+                } else {
+                    $errors['connexion'] = 'Mail ou Mot de passe incorrect';
+                }
+
+  
+            }
+        }
+
         require_once __DIR__ . "/../Views/login.php";
     }
 

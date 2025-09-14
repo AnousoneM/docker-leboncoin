@@ -35,6 +35,10 @@ switch ($page) {
         $objController->logout();
         break;
 
+    case 'create-success':
+        require_once __DIR__ . "/../src/Views/create-success.php";
+        break;
+
     default:
         // aucun cas reconnu = on charge la 404
         require_once __DIR__ . "/../src/Views/page404.php";
