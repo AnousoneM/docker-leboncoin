@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\User;
-use Exception;
 
 class UserController
 {
@@ -112,15 +111,10 @@ class UserController
             // nous vérifions s'il n'y a pas d'erreur = on regarde si le tableau est vide.
             if (empty($errors)) {
 
-                if(User::checkMail($_POST["email"])){
-                    
-
-
+                if (User::checkMail($_POST["email"])) {
                 } else {
                     $errors['connexion'] = 'Mail ou Mot de passe incorrect';
                 }
-
-  
             }
         }
 
