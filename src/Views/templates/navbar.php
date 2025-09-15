@@ -11,7 +11,7 @@
                 </div>
                 <div class="d-flex flex-column justify-content-center text-center px-3">
                     <a href="index.php?url=<?= isset($_SESSION["user"]) ? "profile" : "login" ?>" class="text-white text-decoration-none">
-                        <i class="bi bi-person-fill display-5"></i>
+                        <i class="bi bi-person-fill h1 m-0"></i>
                         <p class="m-0"><?= $_SESSION["user"]["username"] ?? "Se connecter" ?></p>
                     </a>
                 </div>
