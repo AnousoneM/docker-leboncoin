@@ -24,30 +24,14 @@
 
 <body class="d-flex flex-column vh-100">
 
-    <nav class="navbar">
-        <div class="container-fluid">
-
-            <a class="navbar-brand text-white h1 ms-3" href="index.php">AFPA'nnonces</a>
-            <div class="d-flex">
-                <div>
-                    <form role="search" class="d-flex align-items-center mt-2 mx-4">
-                        <input class="form-control me-2 d-block" type="search" placeholder="Cartes Pokemon ..." aria-label="Search" />
-                        <button class="btn btn-outline-light d-block" type="button">Rechercher</button>
-                    </form>
-                </div>
-                <div class="d-flex flex-column justify-content-center">
-                    <a href="index.php?url=login" class="text-white"><i class="bi bi-person-fill display-5"></i></a>
-                </div>
-            </div>
-
-        </div>
-    </nav>
+    <?php include_once __DIR__ . "/templates/navbar.php" ?>
 
     <main class="container my-4 flex-grow-1">
         <h1>PROFIL</h1>
         <?php
         var_dump($_SESSION);
         ?>
+        <p class="h2"><?= $_SESSION["user"]["username"] ?></p>
         <a href="index.php?url=logout" class="btn btn-outline-danger">Se deconnecter</a>
     </main>
 

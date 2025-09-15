@@ -9,6 +9,10 @@ class UserController
 
     public function profile()
     {
+        // on contrôle si une variable de session User est présente
+        // if(!isset($_SESSION["user"])){
+        //     header("Location: index.php?url=login");
+        // }
         require_once __DIR__ . "/../Views/profile.php";
     }
 
@@ -118,16 +122,16 @@ class UserController
 
                 if (User::checkMail($_POST["email"])) {
 
-                    $userInfos = new User();
-                    $userInfos->getUserInfosByEmail($_POST["email"]);
+                    $objUser = new User();
+                    $objUser->getUserInfosByEmail($_POST["email"]);
 
-                    if (password_verify($_POST["password"], $userInfos->password)) {
+                    if (password_verify($_POST["password"], $objUser->password)) {
 
                         // Nous allons créer une variable de session "user" avec les infos du User
-                        $_SESSION["user"]["id"] = $userInfos->id;
-                        $_SESSION["user"]["email"] = $userInfos->email;
-                        $_SESSION["user"]["username"] = $userInfos->username;
-                        $_SESSION["user"]["inscription"] = $userInfos->inscription;
+                        $_SESSION["user"]["id"] = $objUser->id;
+                        $_SESSION["user"]["email"] = $objUser->email;
+                        $_SESSION["user"]["username"] = $objUser->username;
+                        $_SESSION["user"]["inscription"] = $objUser->inscription;
 
                         // Nous allons ensuite faire une redirection sur une page choisie
                         header("Location: index.php?url=profile");
