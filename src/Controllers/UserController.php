@@ -10,9 +10,9 @@ class UserController
     public function profile()
     {
         // on contrôle si une variable de session User est présente
-        // if(!isset($_SESSION["user"])){
-        //     header("Location: index.php?url=login");
-        // }
+        if(!isset($_SESSION["user"])){
+            header("Location: index.php?url=login");
+        }
         require_once __DIR__ . "/../Views/profile.php";
     }
 
