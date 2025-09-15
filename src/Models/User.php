@@ -10,11 +10,11 @@ use PDOException;
 class User
 {
 
-    private int $id;
-    private string $email;
-    private string $password;
-    private string $username;
-    private string $inscription;
+    public int $id;
+    public string $email;
+    public string $password;
+    public string $username;
+    public string $inscription;
 
     /**
      * Permet de créer un utilisateur dans la table users
@@ -167,12 +167,12 @@ class User
 
 
     /**
-     * Permet de récupérer un utilisateur via son email
+     * Permet de récupérer les infos d'un utilisateur via son email
      * et d'hydrater l'objet User avec les données récupérées
      * @param string $email
      * @return bool true si l'utilisateur a été trouvé et l'objet hydraté, false en cas d'erreur ou si l'utilisateur n'existe pas
      */
-    public function getUserByEmail(string $email): bool
+    public function getUserInfosByEmail(string $email): bool
     {
         try {
             // Creation d'une instance de connexion à la base de données

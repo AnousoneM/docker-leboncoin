@@ -7,6 +7,11 @@ use App\Models\User;
 class UserController
 {
 
+    public function profile()
+    {
+        require_once __DIR__ . "/../Views/profile.php";
+    }
+
     public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -112,6 +117,23 @@ class UserController
             if (empty($errors)) {
 
                 if (User::checkMail($_POST["email"])) {
+
+                    $userInfos = new User();
+                    $userInfos->getUserInfosByEmail($_POST["email"]);
+
+                    if (password_verify($_POST["password"], $userInfos->password)) {
+
+                        // Nous allons créer une variable de session "user" avec les infos du User
+                        $_SESSION["user"]["id"] = $userInfos->id;
+                        $_SESSION["user"]["email"] = $userInfos->email;
+                        $_SESSION["user"]["username"] = $userInfos->username;
+                        $_SESSION["user"]["inscription"] = $userInfos->inscription;
+
+                        // Nous allons ensuite faire une redirection sur une page choisie
+                        header("Location: index.php?url=profile");
+                    } else {
+                        $errors['connexion'] = 'Mail ou Mot de passe incorrect';
+                    }
                 } else {
                     $errors['connexion'] = 'Mail ou Mot de passe incorrect';
                 }

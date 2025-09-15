@@ -53,7 +53,8 @@
                 <h2>Les dernières annonces</h2>
 
                 <div class="row mt-3">
-                    <?php for ($i = 0; $i < 9; $i++) { // boucle temporaire pour afficher les annonces ?>
+                    <?php for ($i = 0; $i < 9; $i++) { // boucle temporaire pour afficher les annonces 
+                    ?>
                         <div class="col-md-4 mb-4">
                             <div class="card h-100">
                                 <img src="https://picsum.photos/1280/720?random=<?= $i; ?>" class="card-img-top" alt="Image aléatoire">

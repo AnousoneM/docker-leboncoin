@@ -35,6 +35,11 @@ switch ($page) {
         $objController->logout();
         break;
 
+    case 'profile':
+        $objController = new UserController();
+        $objController->profile();
+        break;
+
     case 'create-success':
         require_once __DIR__ . "/../src/Views/create-success.php";
         break;
