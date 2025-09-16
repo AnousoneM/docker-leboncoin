@@ -27,12 +27,12 @@
     <?php include_once __DIR__ . "/templates/navbar.php" ?>
 
     <main class="container my-4 flex-grow-1">
-        <h1>PROFIL</h1>
-        <?php
-        var_dump($_SESSION);
-        ?>
-        <p class="h2"><?= $_SESSION["user"]["username"] ?></p>
-        <a href="index.php?url=logout" class="btn btn-outline-danger">Se deconnecter</a>
+        <div>
+            <h1 class="m-0">MON PROFIL</h1><a href="index.php?url=logout" class="btn btn-outline-danger btn-sm">Se deconnecter</a>
+        </div>
+        <p class="h1"><?= $_SESSION["user"]["username"] ?>, <span class="fs-6">inscrit depuis <?= explode('-', explode(' ', $_SESSION['user']['inscription'])[0])[0] ?></span></p>
+        <hr>
+        <h2>Mes annonces</h2>
     </main>
 
     <footer class="mt-auto text-center p-4 mt-3">
