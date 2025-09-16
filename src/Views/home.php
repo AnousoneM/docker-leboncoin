@@ -43,7 +43,7 @@
                                 <img src="https://picsum.photos/1280/720?random=<?= $i; ?>" class="card-img-top" alt="Image aléatoire">
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">Une Annonce</h5>
-                                    <p class="card-text">Description de l'annonce</p>
+                                    <p class="card-text"><?= rand(10,1000) . ' €'?></p>
                                 </div>
                             </div>
                         </div>
