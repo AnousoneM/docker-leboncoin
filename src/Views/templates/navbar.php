@@ -1,9 +1,10 @@
     <nav class="navbar">
         <div class="container-fluid">
 
-            <a class="navbar-brand text-white h1 ms-3" href="index.php">AFPA'nnonces</a>
+            <a class="navbar-brand text-white ms-3 coiny-regular" href="index.php">AFPA'nnonces</a>
             <div class="d-flex">
                 <div class="d-flex flex-column justify-content-center text-center">
+                    <a href="" class="btn btn-outline-light">DEPOSER UNE ANNONCE</a>
                     <form role="search" class="d-flex align-items-center mx-4">
                         <input class="form-control me-2 d-block" type="search" placeholder="Cartes Pokemon ..." aria-label="Search" />
                         <button class="btn btn-outline-light d-block" type="button">Rechercher</button>
