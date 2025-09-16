@@ -26,13 +26,30 @@
 
     <?php include_once __DIR__ . "/templates/navbar.php" ?>
 
-    <main class="container my-4 flex-grow-1">
+    <main class="container flex-grow-1">
         <div>
             <h1 class="m-0">MON PROFIL</h1><a href="index.php?url=logout" class="btn btn-outline-danger btn-sm">Se deconnecter</a>
         </div>
         <p class="h1"><?= $_SESSION["user"]["username"] ?>, <span class="fs-6">inscrit depuis <?= explode('-', explode(' ', $_SESSION['user']['inscription'])[0])[0] ?></span></p>
         <hr>
+
         <h2>Mes annonces</h2>
+
+        <div class="row mt-3">
+            <?php for ($i = 0; $i < rand(1,9); $i++) { // boucle temporaire pour afficher les annonces 
+            ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/1280/720?random=<?= $i; ?>" class="card-img-top" alt="Image aléatoire">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Une Annonce</h5>
+                            <p class="card-text"><?= rand(10, 1000) . ' €' ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+
     </main>
 
     <footer class="mt-auto text-center p-4 mt-3">

@@ -26,13 +26,14 @@
 
     <?php include_once __DIR__ . "/templates/navbar.php" ?>
 
-    <main class="container my-4 flex-grow-1">
+    <main class="container flex-grow-1">
         <div class="row">
             <div class="col-12 text-center">
                 <h1 class="mb-4 display-3">Bienvenue sur AFPA'nnonces</h1>
                 <p class="lead">Votre plateforme de petites annonces des stagiaires de l'AFPA.</p>
             </div>
             <div class="col-12 text-center">
+                
                 <h2>Les dernières annonces</h2>
 
                 <div class="row mt-3">
