@@ -40,8 +40,8 @@ switch ($page) {
         $objController->profile();
         break;
 
-    case 'create-success':
-        require_once __DIR__ . "/../src/Views/create-success.php";
+    case 'register-success':
+        require_once __DIR__ . "/../src/Views/register-success.php";
         break;
 
     default:

@@ -82,7 +82,7 @@ class UserController
                 $objetUser = new User();
                 // je vais créer mon User selon la méthode createUser() et j'essaie de créer mon User
                 if ($objetUser->createUser($_POST["email"], $_POST["password"], $_POST["username"])) {
-                    header('Location: index.php?url=create-success');
+                    header('Location: index.php?url=register-success');
                     exit;
                 } else {
                     $errors['server'] = "Une erreur s'est produite veuillez rééssayer ultèrieurement";
