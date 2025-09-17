@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="d-flex flex-column justify-content-center text-center px-3">
-                    <a href="index.php?url=<?= isset($_SESSION["user"]) ? "profile" : "login" ?>" class="text-white text-decoration-none">
+                    <a href="index.php?url=<?= isset($_SESSION["user"]) ? "profil" : "login" ?>" class="text-white text-decoration-none">
                         <i class="bi bi-person-fill h1 m-0"></i>
                         <p class="m-0"><?= $_SESSION["user"]["username"] ?? "Se connecter" ?></p>
                     </a>
@@ -45,10 +45,10 @@
                             <button class="btn btn-outline-success" type="button">Rechercher</button>
                         </form>
 
-                        <a href="index.php?url=<?= isset($_SESSION["user"]) ? "profile" : "login" ?>" class="text-dark text-decoration-none">
+                        <a href="index.php?url=<?= isset($_SESSION["user"]) ? "profil" : "login" ?>" class="text-dark text-decoration-none">
 
                             <div class="d-flex flex-column justify-content-center text-center align-items-center border">
-                                <i class="bi bi-person-fill my-profile"></i>
+                                <i class="bi bi-person-fill my-profil"></i>
                                 <div>
                                     <?= $_SESSION["user"]["username"] ?? "Se connecter" ?>
                                 </div>

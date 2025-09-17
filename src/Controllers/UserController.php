@@ -7,13 +7,13 @@ use App\Models\User;
 class UserController
 {
 
-    public function profile()
+    public function profil()
     {
         // on contrôle si une variable de session User est présente
         if(!isset($_SESSION["user"])){
             header("Location: index.php?url=login");
         }
-        require_once __DIR__ . "/../Views/profile.php";
+        require_once __DIR__ . "/../Views/profil.php";
     }
 
     public function register()
@@ -134,7 +134,7 @@ class UserController
                         $_SESSION["user"]["inscription"] = $objUser->inscription;
 
                         // Nous allons ensuite faire une redirection sur une page choisie
-                        header("Location: index.php?url=profile");
+                        header("Location: index.php?url=profil");
                     } else {
                         $errors['connexion'] = 'Mail ou Mot de passe incorrect';
                     }
