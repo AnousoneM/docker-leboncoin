@@ -7,16 +7,26 @@ use App\Models\User;
 class UserController
 {
 
-    public function profil()
+    /**
+     * Méthode affichant le profil de l'utilisateur connecté
+     *
+     * @return void
+     */
+    public function profil(): void
     {
         // on contrôle si une variable de session User est présente
-        if(!isset($_SESSION["user"])){
+        if (!isset($_SESSION["user"])) {
             header("Location: index.php?url=login");
         }
         require_once __DIR__ . "/../Views/profil.php";
     }
 
-    public function register()
+    /**
+     * Méthode gérant l'inscription d'un utilisateur
+     *
+     * @return void
+     */
+    public function register(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -93,7 +103,12 @@ class UserController
         require_once __DIR__ . "/../Views/register.php";
     }
 
-    public function login()
+    /**
+     * Méthode gérant la connexion d'un utilisateur
+     *
+     * @return void
+     */
+    public function login(): void
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -147,7 +162,12 @@ class UserController
         require_once __DIR__ . "/../Views/login.php";
     }
 
-    public function logout()
+    /**
+     * Méthode gérant la déconnexion d'un utilisateur
+     *
+     * @return void
+     */
+    public function logout(): void
     {
         unset($_SESSION['user']);
         session_destroy();

@@ -1,0 +1,107 @@
+<?php
+
+namespace App\Models;
+
+use App\Models\Database;
+
+use PDO;
+use PDOException;
+
+class Annonce
+{
+    public int $id;
+    public string $title;
+    public string $description;
+    public float $price;
+    public string $publication;
+    public int $user_id;
+
+    /**
+     * Permet de récupérer toutes les annonces dans la table annonces
+     * @return array|false tableau des annonces ou false en cas d'erreur
+     */
+    public function findAll(): array|false
+    {
+        try {
+            // Creation d'une instance de connexion à la base de données
+            $pdo = Database::createInstancePDO();
+
+            // test si la connexion est ok
+            if (!$pdo) {
+                // pas de connexion, on return false
+                return false;
+            }
+
+            // requête SQL pour récupérer toutes les annonces dans la table annonces
+            $sql = 'SELECT * FROM `annonces` ORDER BY `a_publication` DESC';
+
+            // On prépare la requête avant de l'exécuter
+            $stmt = $pdo->prepare($sql);
+
+            // On exécute la requête préparée. La méthode renvoie true si tout s’est bien passé,
+            // false sinon. 
+            // NB : Avec PDO configuré en mode ERRMODE_EXCEPTION, une erreur déclenchera une exception.
+            if ($stmt->execute()) {
+                // on récupère toutes les lignes retournées par la requête dans un tableau associatif à l'aide de fetchAll(PDO::FETCH_ASSOC)
+                // chaque ligne de la table correspond à un tableau associatif
+                // on retourne le tableau des annonces
+                $annonces = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $annonces;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            // test unitaire pour connaitre la raison de l'echec
+            // echo 'Erreur : ' . $e->getMessage();
+            return false;
+        }
+    }
+
+    /**
+     * Permet de créer une annonce dans la table annonces
+     * @param string $title
+     * @param string $description
+     * @param float $price
+     * @param string|null $picture
+     * @param string $publication
+     * @param int $userId
+     * @return bool true si l'insertion a réussi, false en cas d'erreur
+     */
+    public function createAnnonce(string $title, string $description, float $price, ?string $picture, string $publication, int $userId)
+    {
+        try {
+            // Creation d'une instance de connexion à la base de données
+            $pdo = Database::createInstancePDO();
+
+            // test si la connexion est ok
+            if (!$pdo) {
+                // pas de connexion, on return false
+                return false;
+            }
+
+            // requête SQL pour insérer une annonce dans la table annonces
+            $sql = 'INSERT INTO `annonces` (`a_title`, `a_description`, `a_price`, `a_picture`, `u_id`) VALUES (:title, :description , :price, :picture, :userId)';
+
+            // On prépare la requête avant de l'exécuter
+            $stmt = $pdo->prepare($sql);
+
+            // On associe chaque paramètre nommé de la requête (:title, :description, :price, :user_id)
+            // avec la valeur correspondante en PHP, en précisant leur type (ici string).
+            // Grâce aux requêtes préparées, cela empêche toute injection SQL.
+            $stmt->bindValue(':title', $title, PDO::PARAM_STR);
+            $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+            $stmt->bindValue(':price', $price, PDO::PARAM_STR);
+            $stmt->bindValue(':picture', $picture, PDO::PARAM_STR);
+            $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+
+            // On exécute la requête préparée. La méthode renvoie true si tout s’est bien passé,
+            // false sinon. 
+            // NB : Avec PDO configuré en mode ERRMODE_EXCEPTION, une erreur déclenchera une exception.
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            // test unitaire pour connaitre la raison de l'echec
+            // echo 'Erreur : ' . $e->getMessage();
+            return false;
+        }
+    }
+}

@@ -2,6 +2,7 @@
 
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
+use App\Controllers\AnnonceController;
 
 use App\Models\Database;
 
@@ -35,9 +36,14 @@ switch ($page) {
         $objController->logout();
         break;
 
-    case 'profile':
+    case 'profil':
         $objController = new UserController();
-        $objController->profile();
+        $objController->profil();
+        break;
+
+    case 'create':
+        $objController = new AnnonceController();
+        $objController->create();
         break;
 
     case 'register-success':
