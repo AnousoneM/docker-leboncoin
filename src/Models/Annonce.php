@@ -88,8 +88,8 @@ class Annonce
             // On associe chaque paramètre nommé de la requête (:title, :description, :price, :user_id)
             // avec la valeur correspondante en PHP, en précisant leur type (ici string).
             // Grâce aux requêtes préparées, cela empêche toute injection SQL.
-            $stmt->bindValue(':title', $title, PDO::PARAM_STR);
-            $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+            $stmt->bindValue(':title', htmlspecialchars($title), PDO::PARAM_STR);
+            $stmt->bindValue(':description', htmlspecialchars($description), PDO::PARAM_STR);
             $stmt->bindValue(':price', $price, PDO::PARAM_STR);
             $stmt->bindValue(':picture', $picture, PDO::PARAM_STR);
             $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);

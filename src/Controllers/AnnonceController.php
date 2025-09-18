@@ -65,8 +65,9 @@ class AnnonceController
 
                 // ------------------------------------------------------------------------------------------------
                 // nous allons faire un traitement plus long pour la photo car pas mal de paramètres sont à vérifier
-                // 1 : la photo est bien une photo et qu'elle est au format autorisé
-                // 2 : la photo ne dépasse pas une c
+                // 
+                // 1 : la photo est bien une photo + la photo est au format autorisé
+                // 2 : la photo ne dépasse pas une certaine taille
                 // ------------------------------------------------------------------------------------------------
 
                 // on créé une variable pour faciliter la manipulation du fichier uploadé via un formulaire qui est stocké dans un ficher temporaire
@@ -77,12 +78,13 @@ class AnnonceController
                 $mimeOk = ['image/jpeg', 'image/webp', 'image/png'];
                 // nous allons définir l'emplacement ou nous allons stocker les images : toutes les images seront dans le répertoire 'uploads'
                 $uploadsDir = __DIR__ . "/../../public/uploads/";
-                // Nous allons Vérifier si le dossier existe, car si il est vide, il ne sera pas présent dans le repo
+                // nous allons vérifier si le dossier existe, car si il est vide, il ne sera pas présent dans le repo lors d'un commit / push
                 if (!is_dir($uploadsDir)) {
-                    // Si non présent, nous allons le créer avec les bons droits (ici 0755, parfait pour du upload de fichier)
+                    // si non présent, nous allons le créer avec les bons droits (ici 0755, parfait pour du upload de fichier)
                     mkdir($uploadsDir, 0755, true);
                 }
 
+                //
                 // ETAPE 1 - Nous allons regarder le MIME du fichier pour nous assurer qu'il s'agit bien d'une image
                 // Nous allons également regarder si le format est autorisé
 
@@ -96,6 +98,7 @@ class AnnonceController
                 if (!in_array($mime, $mimeOk, 1)) {
                     $errors['picture'] = 'Attention, votre image doit être au format : jpeg, png ou webp';
 
+                    //
                     // ETAPE 2 - Nous allons controller la taille de l'image
                     // -> 8 Mo max
                 } else if ($_FILES["picture"]["size"] > (8 * 1024 * 1024)) {
@@ -103,8 +106,29 @@ class AnnonceController
                 }
 
                 if (empty($errors)) {
+                    // si pas d'erreurs dans le contrôle du fichier,
+                    // nous allons créer un nom de fichier unique à l'aide de uniqid() et l'extension du fichier que nous avons récupéré.
+                    $pictureName = uniqid() . '.' . $fileExtension;
+                }
+            }
 
-                    move_uploaded_file($file, $uploadsDir . 'titi.jpg');
+
+            if (empty($errors)) {
+
+                // on instancie notre objet selon la classe Annonce
+                $objAnnonce = new Annonce();
+
+                // nous allons créer notre annonce via un if pour gérer les erreurs
+                // ici nous allons voir si $pictureName est présent, si oui on l'utilise, sinon on donne la valeur de null
+                // ici on utilise un cast (float) pour transformer la valeur en float plus rapide qu'une fonction native car nous recupérons un string en raison du type=text
+                if ($objAnnonce->createAnnonce($_POST['title'], $_POST['description'], (float) $_POST['price'], $pictureName ?? null, $_SESSION['user']['id'])) {
+                    //
+                    // si l'utilisateur à choisi une photo, nous allons pouvoir uploader l'image dans le dossier uploads
+                    if (isset($pictureName)) {
+                        move_uploaded_file($_FILES["picture"]["tmp_name"], $uploadsDir . $pictureName);
+                    }
+                    header('Location: index.php?url=profil');
+                    exit;
                 }
             }
         }
