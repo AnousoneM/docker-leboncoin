@@ -59,7 +59,8 @@
 
                     <div class="mb-3">
                         <label for="price" class="form-label">Prix</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["price"] ?? '' ?></span>
-                        <input type="number" class="form-control" id="price" name="price" value="<?= $_POST["price"] ?? "" ?>">
+                        <!-- ici le prix sera en text pour faciliter le traitement et également l'affichage -->
+                        <input type="text" class="form-control" id="price" name="price" value="<?= $_POST["price"] ?? "" ?>">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Mettre en ligne</button>

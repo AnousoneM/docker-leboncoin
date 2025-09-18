@@ -17,6 +17,7 @@ class UserController
         // on contrôle si une variable de session User est présente
         if (!isset($_SESSION["user"])) {
             header("Location: index.php?url=login");
+            exit;
         }
         require_once __DIR__ . "/../Views/profil.php";
     }
@@ -172,5 +173,6 @@ class UserController
         unset($_SESSION['user']);
         session_destroy();
         header('Location: index.php?url=login');
+        exit;
     }
 }

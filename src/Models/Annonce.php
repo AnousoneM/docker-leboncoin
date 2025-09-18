@@ -67,7 +67,7 @@ class Annonce
      * @param int $userId
      * @return bool true si l'insertion a réussi, false en cas d'erreur
      */
-    public function createAnnonce(string $title, string $description, float $price, ?string $picture, string $publication, int $userId)
+    public function createAnnonce(string $title, string $description, float $price, ?string $picture, int $userId)
     {
         try {
             // Creation d'une instance de connexion à la base de données
