@@ -76,7 +76,12 @@ class AnnonceController
                 // on va créer un tableau des types MIME authorisés
                 $mimeOk = ['image/jpeg', 'image/webp', 'image/png'];
                 // nous allons définir l'emplacement ou nous allons stocker les images : toutes les images seront dans le répertoire 'uploads'
-                $uploadsDir = __DIR__ . "/../uploads/";
+                $uploadsDir = __DIR__ . "/../../public/uploads/";
+                // Nous allons Vérifier si le dossier existe, car si il est vide, il ne sera pas présent dans le repo
+                if (!is_dir($uploadsDir)) {
+                    // Si non présent, nous allons le créer avec les bons droits (ici 0755, parfait pour du upload de fichier)
+                    mkdir($uploadsDir, 0755, true);
+                }
 
                 // ETAPE 1 - Nous allons regarder le MIME du fichier pour nous assurer qu'il s'agit bien d'une image
                 // Nous allons également regarder si le format est autorisé
@@ -95,7 +100,12 @@ class AnnonceController
                     // -> 8 Mo max
                 } else if ($_FILES["picture"]["size"] > (8 * 1024 * 1024)) {
                     $errors['picture'] = 'La photo est trop grande 8 Mo max';
-                } else if 
+                }
+
+                if (empty($errors)) {
+
+                    move_uploaded_file($file, $uploadsDir . 'titi.jpg');
+                }
             }
         }
         require_once __DIR__ . "/../Views/create.php";

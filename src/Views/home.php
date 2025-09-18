@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Coiny&display=swap" rel="stylesheet">
 
     <!-- css perso -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
     <!-- cdn icones bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
