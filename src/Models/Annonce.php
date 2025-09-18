@@ -85,9 +85,10 @@ class Annonce
             // On prépare la requête avant de l'exécuter
             $stmt = $pdo->prepare($sql);
 
-            // On associe chaque paramètre nommé de la requête (:title, :description, :price, :user_id)
+            // on associe chaque paramètre nommé de la requête (:title, :description, :price, :user_id)
             // avec la valeur correspondante en PHP, en précisant leur type (ici string).
-            // Grâce aux requêtes préparées, cela empêche toute injection SQL.
+            // grâce aux requêtes préparées, cela empêche toute injection SQL.
+            // nous utilisons également htmlspecialchar pour rendre tout code html innofensif
             $stmt->bindValue(':title', htmlspecialchars($title), PDO::PARAM_STR);
             $stmt->bindValue(':description', htmlspecialchars($description), PDO::PARAM_STR);
             $stmt->bindValue(':price', $price, PDO::PARAM_STR);

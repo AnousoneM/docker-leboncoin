@@ -127,8 +127,11 @@ class AnnonceController
                     if (isset($pictureName)) {
                         move_uploaded_file($_FILES["picture"]["tmp_name"], $uploadsDir . $pictureName);
                     }
+
                     header('Location: index.php?url=profil');
                     exit;
+                } else {
+                    $errors['server'] = "Une erreur s'est produite, veuillez essayer ultérieurement";
                 }
             }
         }
