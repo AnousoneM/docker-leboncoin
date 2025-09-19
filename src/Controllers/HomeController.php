@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Annonce;
+
 class HomeController
 {
 
@@ -10,8 +12,13 @@ class HomeController
      *
      * @return void
      */
-    public function index():void
+    public function index(): void
     {
+
+        $objAnnonce = new Annonce();
+        $allAnnonce = $objAnnonce->findAll();
+        var_dump($allAnnonce);
+        
         require_once __DIR__ . "/../Views/home.php";
     }
 }

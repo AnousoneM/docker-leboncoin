@@ -33,18 +33,18 @@
                 <p class="lead">Votre plateforme de petites annonces des stagiaires de l'AFPA.</p>
             </div>
             <div class="col-12 text-center">
-                
+
                 <h2>Les dernières annonces</h2>
 
                 <div class="row mt-3">
-                    <?php for ($i = 0; $i < 9; $i++) { // boucle temporaire pour afficher les annonces 
+                    <?php foreach ($allAnnonce as $annonce) {
                     ?>
                         <div class="col-md-4 mb-4">
                             <div class="card h-100">
-                                <img src="https://picsum.photos/1280/720?random=<?= $i; ?>" class="card-img-top" alt="Image aléatoire">
+                                <img src="/uploads/<?= $annonce['a_picture'] ?? 'no_picture.png' ?>" class="img-annonce" alt="Image aléatoire">
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">Une Annonce</h5>
-                                    <p class="card-text"><?= rand(10,1000) . ' €'?></p>
+                                    <p class="card-title h5"><?= $annonce['a_title'] ?>e</p>
+                                    <p class="card-text"><?= $annonce['a_price'] . '€' ?></p>
                                 </div>
                             </div>
                         </div>

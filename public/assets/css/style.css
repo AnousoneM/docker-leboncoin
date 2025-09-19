@@ -22,3 +22,10 @@ main {
 .my-profil {
     font-size: 2rem;
 }
+
+.img-annonce {
+    width: auto;
+    height: 25vh;
+    object-fit: cover;
+    object-position: center;
+}

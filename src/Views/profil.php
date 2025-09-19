@@ -33,10 +33,14 @@
         <p class="h1"><?= $_SESSION["user"]["username"] ?>, <span class="fs-6">inscrit depuis <?= explode('-', explode(' ', $_SESSION['user']['inscription'])[0])[0] ?></span></p>
         <hr>
 
+        <div class="alert alert-primary" role="alert">
+            Votre annonce a bien été publié !
+        </div>
+
         <h2>Mes annonces</h2>
 
         <div class="row mt-3">
-            <?php for ($i = 0; $i < rand(1,9); $i++) { // boucle temporaire pour afficher les annonces 
+            <?php for ($i = 0; $i < rand(1, 9); $i++) { // boucle temporaire pour afficher les annonces 
             ?>
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">

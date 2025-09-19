@@ -125,7 +125,7 @@ class AnnonceController
                     //
                     // si l'utilisateur à choisi une photo, nous allons pouvoir uploader l'image dans le dossier uploads
                     if (isset($pictureName)) {
-                        move_uploaded_file($_FILES["picture"]["tmp_name"], $uploadsDir . $pictureName);
+                        move_uploaded_file($file, $uploadsDir . $pictureName);
                     }
 
                     header('Location: index.php?url=profil');
