@@ -17,7 +17,6 @@ class HomeController
 
         $objAnnonce = new Annonce();
         $allAnnonce = $objAnnonce->findAll();
-        var_dump($allAnnonce);
         
         require_once __DIR__ . "/../Views/home.php";
     }

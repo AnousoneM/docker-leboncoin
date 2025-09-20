@@ -33,10 +33,14 @@
         <p class="h1"><?= $_SESSION["user"]["username"] ?>, <span class="fs-6">inscrit depuis <?= explode('-', explode(' ', $_SESSION['user']['inscription'])[0])[0] ?></span></p>
         <hr>
 
-        <div class="alert alert-primary" role="alert">
-            Votre annonce a bien été publié !
-        </div>
-
+        <?php
+        // module pour afficher un message flash, on verifie si la variable de session existe.
+        if (isset($_SESSION['message'])) {
+            echo '<div class="alert alert-' . $_SESSION['message']['message_type'] . '" role="alert">' . $_SESSION['message']['message'] . '</div>';
+            // on supprime la variable de session
+            unset($_SESSION['message']);
+        }
+        ?>
         <h2>Mes annonces</h2>
 
         <div class="row mt-3">

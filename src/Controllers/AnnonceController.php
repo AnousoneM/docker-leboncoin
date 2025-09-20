@@ -127,6 +127,8 @@ class AnnonceController
                     if (isset($pictureName)) {
                         move_uploaded_file($file, $uploadsDir . $pictureName);
                     }
+                    // je vais créer une variable de session temporaire pour afficher un message sur la page profil : il s'agit d'un tableau avec le message et le type de message bootstrap
+                    $_SESSION['message'] = ["message" => "Votre annonce a bien été créée", "message_type" => "primary"];
 
                     header('Location: index.php?url=profil');
                     exit;
