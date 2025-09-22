@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le : mar. 09 sep. 2025 à 12:40
--- Version du serveur : 5.7.39
--- Version de PHP : 8.2.0
+-- Hôte : db
+-- Généré le : lun. 22 sep. 2025 à 18:08
+-- Version du serveur : 8.0.43
+-- Version de PHP : 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `leboncoin`
 --
-CREATE DATABASE IF NOT EXISTS `leboncoin` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS `leboncoin` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 USE `leboncoin`;
 
 -- --------------------------------------------------------
@@ -29,17 +29,32 @@ USE `leboncoin`;
 -- Structure de la table `annonces`
 --
 
+DROP TABLE IF EXISTS `annonces`;
 CREATE TABLE IF NOT EXISTS `annonces` (
-  `a_id` int(11) NOT NULL AUTO_INCREMENT,
+  `a_id` int NOT NULL AUTO_INCREMENT,
   `a_title` varchar(255) NOT NULL,
   `a_description` text NOT NULL,
   `a_price` decimal(10,2) NOT NULL,
   `a_picture` varchar(255) DEFAULT NULL,
   `a_publication` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `u_id` int(11) NOT NULL,
+  `u_id` int NOT NULL,
   PRIMARY KEY (`a_id`),
   KEY `u_id` (`u_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `annonces`
+--
+
+INSERT INTO `annonces` (`a_id`, `a_title`, `a_description`, `a_price`, `a_picture`, `a_publication`, `u_id`) VALUES
+(1, 'coco', 'noix de coco', 12.00, NULL, '2025-09-17 13:55:00', 1),
+(3, 'Bambu', 'Bambu pas cher', 234.00, NULL, '2025-09-22 06:42:19', 1),
+(4, 'Ici mon annonce', 'C une annonce', 34.00, NULL, '2025-09-22 09:32:23', 3),
+(5, 'test', 'ceci est un test', 45.00, NULL, '2025-09-22 09:44:31', 3),
+(6, 'Zoro', 'Zoro', 67.00, '68d1399793ec2.png', '2025-09-22 11:57:11', 3),
+(7, 'azeaze', 'azeazeaze', 12.00, NULL, '2025-09-22 11:59:47', 3),
+(8, 'zae', 'aze', 12.00, NULL, '2025-09-22 13:09:55', 3),
+(9, 'Made by Akasa', 'Made by Me', 34.00, '68d19019af767.png', '2025-09-22 18:06:17', 1);
 
 -- --------------------------------------------------------
 
@@ -47,8 +62,9 @@ CREATE TABLE IF NOT EXISTS `annonces` (
 -- Structure de la table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `u_id` int(11) NOT NULL AUTO_INCREMENT,
+  `u_id` int NOT NULL AUTO_INCREMENT,
   `u_email` varchar(50) NOT NULL,
   `u_password` varchar(255) NOT NULL,
   `u_username` varchar(25) NOT NULL,
@@ -56,7 +72,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`u_id`),
   UNIQUE KEY `u_email` (`u_email`),
   UNIQUE KEY `u_username` (`u_username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`u_id`, `u_email`, `u_password`, `u_username`, `u_inscription`) VALUES
+(1, 'akasa@mail.fr', '$2y$10$zNfOeVlpNkUjNSzttMMBVeOYDteLG3bvnzHt2s1ZQogPwWsBuvwTq', 'akasa', '2025-09-16 14:39:32'),
+(2, 'zenitsu@mail.fr', '$2y$10$DtdNNW3mjvw3.GvObnigPe4pGZUbiTf.os255eEAPglV4kgQT2rSm', 'zenitsu', '2025-09-17 11:24:28'),
+(3, 'pseudo@mail.fr', '$2y$10$9.b1ua86Ew7BFq2qfsCtXeAH.66NfkhBbLqP0hKIbGeVcP92djHf2', 'pseudo', '2025-09-22 09:27:51');
 
 --
 -- Contraintes pour les tables déchargées
