@@ -41,6 +41,11 @@ switch ($page) {
         $objController->profil();
         break;
 
+    case 'details':
+        $objController = new AnnonceController();
+        $objController->show($arrayUrl[1] ?? null);
+        break;
+
     case 'create':
         $objController = new AnnonceController();
         $objController->create();

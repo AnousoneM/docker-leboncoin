@@ -26,16 +26,25 @@
 
     <?php include_once __DIR__ . "/templates/navbar.php" ?>
 
-    <main class="container py-4">
+    <main class="container flex-grow-1">
 
-        <h1 class="text-center">C'est parti !!!</h1>
+        <div>
+            <h1 class="m-0">DETAILS DE L'ANNONCE</h1>
+            <a href="index.php?url=home" class="btn btn-outline-primary btn-sm mt-3">Retour aux annonces</a>
+        </div>
 
-        <div class="row justify-content-center">
+        <hr>
 
-            <div class="col-6">
+        <div class="row mt-3">
 
-                <p>Votre inscription a bien été prise en compte, vous pouvez maintenant <a href="index.php?url=login">vous connecter</a>.</p>
-
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="/uploads/<?= $annonce["a_picture"] ?? 'no_picture.png' ?>" class="img-annonce" alt="Image de l'annonce">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title"><?= $annonce["a_title"] ?></h5>
+                        <p class="card-text"><?= $annonce["a_price"] . ' €' ?></p>
+                    </div>
+                </div>
             </div>
 
         </div>

@@ -1,7 +1,8 @@
 <div class="row justify-content-center m-0">
+
     <div class="col-10 border">
         <!-- <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary shadow px-4"> -->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary shadow px-4">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary shadow px-4 fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand coiny-regular" href="index.php">AFPA'nnonces</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,4 +36,5 @@
             </div>
         </nav>
     </div>
+
 </div>

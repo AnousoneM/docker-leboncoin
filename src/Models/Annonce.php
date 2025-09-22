@@ -57,8 +57,56 @@ class Annonce
         }
     }
 
-        /**
+
+
+    /**
      * Permet de récupérer toutes les annonces dans la table annonces
+     * @return array|false tableau des annonces ou false en cas d'erreur
+     */
+    public function findById($id): array|false
+    {
+        try {
+            // Creation d'une instance de connexion à la base de données
+            $pdo = Database::createInstancePDO();
+
+            // test si la connexion est ok
+            if (!$pdo) {
+                // pas de connexion, on return false
+                return false;
+            }
+
+            // requête SQL pour récupérer toutes les annonces dans la table annonces
+            $sql = 'SELECT * FROM `annonces` WHERE `a_id` = :id ORDER BY `a_publication` DESC';
+
+            // On prépare la requête avant de l'exécuter
+            $stmt = $pdo->prepare($sql);
+
+            // on associe chaque paramètre nommé de la requête (:id)
+            // avec la valeur correspondante en PHP, en précisant leur type (ici int).
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+            // On exécute la requête préparée. La méthode renvoie true si tout s’est bien passé,
+            // false sinon. 
+            // NB : Avec PDO configuré en mode ERRMODE_EXCEPTION, une erreur déclenchera une exception.
+            if ($stmt->execute()) {
+                // on récupère toutes les lignes retournées par la requête dans un tableau associatif à l'aide de fetchAll(PDO::FETCH_ASSOC)
+                // chaque ligne de la table correspond à un tableau associatif
+                // on retourne le tableau des annonces
+                $annonce = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $annonce;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            // test unitaire pour connaitre la raison de l'echec
+            // echo 'Erreur : ' . $e->getMessage();
+            return false;
+        }
+    }
+
+
+    /**
+     * Permet de récupérer toutes les annonces dans la table annonces selon l'id de l'utilisateur
      * @return array|false tableau des annonces ou false en cas d'erreur
      */
     public function findByUser($userId): array|false

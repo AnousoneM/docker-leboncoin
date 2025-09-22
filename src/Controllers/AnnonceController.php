@@ -139,4 +139,25 @@ class AnnonceController
         }
         require_once __DIR__ . "/../Views/create.php";
     }
+
+    public function show(?int $id): void
+    {
+        // on vérifie que l'id est bien un nombre entier et qu'il n'est pas null
+        if (is_null($id) || !is_int($id)) {
+            header("Location: index.php?url=page404");
+            exit;
+        }
+
+        // on instancie un objet Annonce
+        $objAnnonce = new Annonce();
+        $annonce = $objAnnonce->findById($id);
+
+        // si l'annonce n'existe pas, on redirige vers la page 404
+        if ($annonce === false) {
+            header("Location: index.php?url=page404");
+            exit;
+        }
+
+        require_once __DIR__ . "/../Views/details.php";
+    }
 }
