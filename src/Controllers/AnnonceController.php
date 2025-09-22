@@ -93,7 +93,7 @@ class AnnonceController
 
                 // on récupère le type MIME qui sera du type 'image/jpeg' ou 'image/png'
                 $mime = finfo_file($fileInfos, $file);
-
+                
                 // on regarde dans notre tableau, si le format est autorisé
                 if (!in_array($mime, $mimeOk, 1)) {
                     $errors['picture'] = 'Attention, votre image doit être au format : jpeg, png ou webp';

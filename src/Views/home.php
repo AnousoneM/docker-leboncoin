@@ -43,7 +43,7 @@
                             <div class="card h-100">
                                 <img src="/uploads/<?= $annonce['a_picture'] ?? 'no_picture.png' ?>" class="img-annonce" alt="Image aléatoire">
                                 <div class="card-body d-flex flex-column">
-                                    <p class="card-title h5"><?= $annonce['a_title'] ?>e</p>
+                                    <p class="card-title h5"><?= $annonce['a_title'] ?></p>
                                     <p class="card-text"><?= $annonce['a_price'] . '€' ?></p>
                                 </div>
                             </div>

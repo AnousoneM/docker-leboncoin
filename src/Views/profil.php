@@ -44,14 +44,14 @@
         <h2>Mes annonces</h2>
 
         <div class="row mt-3">
-            <?php for ($i = 0; $i < rand(1, 9); $i++) { // boucle temporaire pour afficher les annonces 
+            <?php foreach ($userAnnonces as $annonce) { // boucle temporaire pour afficher les annonces 
             ?>
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/1280/720?random=<?= $i; ?>" class="card-img-top" alt="Image aléatoire">
+                        <img src="/uploads/<?= $annonce["a_picture"] ?? 'no_picture.png' ?>" class="card-img-top" alt="Image de l'annonce">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Une Annonce</h5>
-                            <p class="card-text"><?= rand(10, 1000) . ' €' ?></p>
+                            <h5 class="card-title"><?= $annonce["a_title"] ?></h5>
+                            <p class="card-text"><?= $annonce["a_price"] . ' €' ?></p>
                         </div>
                     </div>
                 </div>

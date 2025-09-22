@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Annonce;
 
 class UserController
 {
@@ -19,6 +20,10 @@ class UserController
             header("Location: index.php?url=login");
             exit;
         }
+
+        $objetAnnonce = new Annonce();
+        $userAnnonces = $objetAnnonce->findByUser($_SESSION["user"]["id"]);
+
         require_once __DIR__ . "/../Views/profil.php";
     }
 
