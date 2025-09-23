@@ -27,7 +27,7 @@
     <?php include_once __DIR__ . "/templates/navbar.php" ?>
 
     <main class="container flex-grow-1">
-        <p class="display-2 mb-1"><?= $_SESSION["user"]["username"] ?><span class="fs-6">, inscrit depuis <?= App\Models\User::extractDate($_SESSION['user']['inscription'], 'year') ?></span></p>
+        <p class="display-2 mb-1"><?= $_SESSION["user"]["username"] ?><span class="fs-6">, inscrit depuis <?= (new DateTime($_SESSION["user"]["inscription"]))->format('Y') ?></span></p>
         <a href="index.php?url=logout" class="btn btn-outline-danger btn-sm">Se deconnecter</a>
 
         <hr>
@@ -49,15 +49,21 @@
             if (empty($userAnnonces)) {
                 echo "<p>Vous n'avez pas encore d'annonces.</p>";
             } else {
-                foreach ($userAnnonces as $annonce) { // boucle temporaire pour afficher les annonces 
+                foreach ($userAnnonces as $annonce) {
             ?>
                     <div class="col-md-4 mb-4">
                         <a href="index.php?url=details/<?= $annonce['a_id'] ?>" class="text-decoration-none">
                             <div class="card h-100">
                                 <img src="/uploads/<?= $annonce["a_picture"] ?? 'no_picture.png' ?>" class="img-annonce" alt="Image de l'annonce">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title"><?= $annonce["a_title"] ?></h5>
-                                    <p class="card-text"><?= $annonce["a_price"] . ' €' ?></p>
+
+                                <div class="card-body row">
+                                    <div class="border p-2 col-10">
+                                        <p class="h5 card-title"><?= $annonce['a_title'] ?></p>
+                                        <p class="card-text fw-bold"><?= $annonce['a_price'] . '€' ?></p>
+                                    </div>
+                                    <div class="border col-2 d-flex flex-column align-items-center justify-content-center p-2">
+                                        <i class="bi bi-heart fs-3"></i>
+                                    </div>
                                 </div>
                             </div>
                         </a>

@@ -32,25 +32,35 @@
                 <h1 class="mb-4 display-3">Bienvenue sur AFPA'nnonces</h1>
                 <p class="lead">Votre plateforme de petites annonces des stagiaires de l'AFPA.</p>
             </div>
-            <div class="col-12 text-center">
+            <div class="col-12">
 
                 <h2>Les dernières annonces</h2>
 
                 <div class="row mt-3">
-                    <?php foreach ($allAnnonce as $annonce) {
+                    <?php foreach ($allAnnonce as $index => $annonce) {
                     ?>
                         <div class="col-md-4 mb-4">
                             <a href="index.php?url=details/<?= $annonce['a_id'] ?>" class="text-decoration-none">
                                 <div class="card h-100">
                                     <img src="/uploads/<?= $annonce['a_picture'] ?? 'no_picture.png' ?>" class="img-annonce" alt="Image aléatoire">
-                                    <div class="card-body d-flex flex-column">
-                                        <p class="card-title h5"><?= $annonce['a_title'] ?></p>
-                                        <p class="card-text"><?= $annonce['a_price'] . '€' ?></p>
+
+                                    <div class="card-body row">
+                                        <div class="border p-2 col-10">
+                                            <p class="h5 card-title"><?= $annonce['a_title'] ?></p>
+                                            <p class="card-text fw-bold"><?= $annonce['a_price'] . '€' ?></p>
+                                            <p class="m-0"><?= (new DateTime($annonce['a_publication']))->format('d/m/Y') ?></p>
+                                        </div>
+                                        <div class="border col-2 d-flex flex-column align-items-center justify-content-center p-2">
+                                            <i class="bi bi-heart fs-3"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    <?php } ?>
+                    <?php
+                        // on affiche seulement 3 annonces à l'aide de l'index
+                        if ($index == (3 - 1)) break;
+                    } ?>
                 </div>
 
                 <div class="text-center mb-4">

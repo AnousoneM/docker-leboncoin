@@ -198,27 +198,4 @@ class Annonce
             return false;
         }
     }
-
-    /**
-     * Extrait la date, l'heure et l'année d'une chaîne datetime au format 'YYYY-MM-DD HH:MM:SS' provenant de la base de données.
-     * @param string $datetime La chaîne datetime à traiter
-     * @return array Un tableau associatif contenant la date, l'heure et l'année
-     */
-    public static function extractDate(string $datetime, string $element): string
-    {
-        // Séparer la date et l'heure
-        $date = explode(' ', $datetime)[0];
-        $time = explode(' ', $datetime)[1];
-        // Extraire l'année de la date
-        $year = explode('-', $date)[0];
-
-        // Retourner la partie demandée
-        return match ($element) {   
-            'date' => $date,
-            'time' => $time,
-            'year' => $year
-        };
-
-    }
-
 }
