@@ -29,13 +29,25 @@
     <main class="container flex-grow-1">
 
         <div>
-            <h1 class="m-0">DETAILS DE L'ANNONCE</h1>
             <a href="index.php?url=home" class="btn btn-outline-primary btn-sm mt-3">Retour aux annonces</a>
         </div>
 
         <hr>
 
         <div class="row mt-3">
+
+            <div class="col">
+                <img src="/uploads/<?= $annonce["a_picture"] ?? 'no_picture.png' ?>" alt="Image de l'annonce" class="img-fluid">
+            </div>
+            <div class="col">
+                <p class="h5"><?= $annonce["a_title"] ?></p>
+                <p class="h5"><?= $annonce["a_title"] ?></p>
+                <p class="card-text"><?= $annonce["a_description"] ?></p>
+            </div>
+
+        </div>
+
+        <!-- <div class="row mt-3">
 
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
@@ -47,7 +59,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> -->
 
     </main>
 

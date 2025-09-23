@@ -76,7 +76,7 @@ class Annonce
             }
 
             // requête SQL pour récupérer toutes les annonces dans la table annonces
-            $sql = 'SELECT * FROM `annonces` WHERE `a_id` = :id ORDER BY `a_publication` DESC';
+            $sql = 'SELECT `a_id`, `a_title`, `a_description`, `a_picture`, `a_price`, `a_publication`, `u_username` FROM `annonces` INNER JOIN `users` ON `annonces`.`u_id` = `users`.`u_id` WHERE `a_id` = :id ORDER BY `a_publication` DESC';
 
             // On prépare la requête avant de l'exécuter
             $stmt = $pdo->prepare($sql);
@@ -160,7 +160,7 @@ class Annonce
      * @param int $userId
      * @return bool true si l'insertion a réussi, false en cas d'erreur
      */
-    public function createAnnonce(string $title, string $description, float $price, ?string $picture, int $userId)
+    public function createAnnonce(string $title, string $description, float $price, ?string $picture, int $userId): bool
     {
         try {
             // Creation d'une instance de connexion à la base de données
@@ -198,4 +198,27 @@ class Annonce
             return false;
         }
     }
+
+    /**
+     * Extrait la date, l'heure et l'année d'une chaîne datetime au format 'YYYY-MM-DD HH:MM:SS' provenant de la base de données.
+     * @param string $datetime La chaîne datetime à traiter
+     * @return array Un tableau associatif contenant la date, l'heure et l'année
+     */
+    public static function extractDate(string $datetime, string $element): string
+    {
+        // Séparer la date et l'heure
+        $date = explode(' ', $datetime)[0];
+        $time = explode(' ', $datetime)[1];
+        // Extraire l'année de la date
+        $year = explode('-', $date)[0];
+
+        // Retourner la partie demandée
+        return match ($element) {   
+            'date' => $date,
+            'time' => $time,
+            'year' => $year
+        };
+
+    }
+
 }

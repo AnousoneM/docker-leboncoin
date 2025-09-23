@@ -27,7 +27,7 @@
     <?php include_once __DIR__ . "/templates/navbar.php" ?>
 
     <main class="container flex-grow-1">
-        <p class="display-2 mb-1"><?= $_SESSION["user"]["username"] ?>, <span class="fs-6">inscrit depuis <?= explode('-', explode(' ', $_SESSION['user']['inscription'])[0])[0] ?></span></p>
+        <p class="display-2 mb-1"><?= $_SESSION["user"]["username"] ?><span class="fs-6">, inscrit depuis <?= App\Models\User::extractDate($_SESSION['user']['inscription'], 'year') ?></span></p>
         <a href="index.php?url=logout" class="btn btn-outline-danger btn-sm">Se deconnecter</a>
 
         <hr>

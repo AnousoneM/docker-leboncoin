@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Models;
 
@@ -7,12 +7,13 @@ use PDO;
 use PDOException;
 
 
-class Database {
+class Database
+{
     /**
      * Permet de créer une instance de PDO
      * @return object Instance PDO ou Null
      */
-    public static function createInstancePDO(): ?PDO
+    public static function createInstancePDO(): PDO|null
     {
         // on déclare des variables : il s'agit des paramètres de notre container docker
         $db_host = 'db';
