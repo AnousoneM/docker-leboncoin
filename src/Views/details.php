@@ -34,15 +34,37 @@
 
         <hr>
 
-        <div class="row mt-3">
+        <div class="row mt-3 mb-4">
 
-            <div class="col">
-                <img src="/uploads/<?= $annonce["a_picture"] ?? 'no_picture.png' ?>" alt="Image de l'annonce" class="img-fluid">
+            <div class="col-lg-8 border rounded p-3">
+                <img src="/uploads/<?= $annonce["a_picture"] ?? 'no_picture.png' ?>" class="img-detail" alt="Image de l'annonce">
+                <div class="mt-2 border border rounded py-2 px-3 shadow shadow-sm">
+                    <p class="text-secondary">Publié le : <?= (new DateTime($annonce["a_publication"]))->format('d/m/Y') ?></p>
+                    <p class="h3"><?= $annonce["a_title"] ?></p>
+                    <p class="mt-2 h5"><?= $annonce["a_price"] . ' €' ?></p>
+                </div>
+                <div class="mt-2 p-2">
+                    <p class="mt-1 h4">Description</p>
+                    <p class="mt-3 text-secondary"><?= $annonce["a_description"] ?></p>
+                </div>
             </div>
-            <div class="col">
-                <p class="h5"><?= $annonce["a_title"] ?></p>
-                <p class="h5"><?= $annonce["a_title"] ?></p>
-                <p class="card-text"><?= $annonce["a_description"] ?></p>
+
+            <div class="col-lg-4 rounded p-3">
+                <div class="mb-4">
+                    <div class="row">
+                        <div class="col-3 text-center">
+                            <i class="bi bi-person-circle display-1"></i>
+                        </div>
+                        <div class="col h3 pt-2">
+                            <?= $annonce["u_username"] ?>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-warning w-100 my-1">Acheter</button>
+                    <button class="btn btn-outline-primary w-100 my-1">Faire une offre</button>
+                    <button class="btn btn-primary w-100 my-1">Contacter</button>
+                </div>
             </div>
 
         </div>

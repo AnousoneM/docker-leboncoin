@@ -23,7 +23,7 @@
 
                     <a href="index.php?url=<?= isset($_SESSION["user"]) ? "profil" : "login" ?>" class="text-dark text-decoration-none">
 
-                        <div class="d-flex flex-column justify-content-center text-center align-items-center border">
+                        <div class="d-flex flex-column justify-content-center text-center align-items-center navbar-connexion">
                             <i class="bi bi-person-fill my-profil"></i>
                             <div>
                                 <?= $_SESSION["user"]["username"] ?? "Se connecter" ?>
