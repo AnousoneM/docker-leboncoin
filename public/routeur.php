@@ -51,6 +51,16 @@ switch ($page) {
         $objController->create();
         break;
 
+    case 'delete':
+        $objController = new AnnonceController();
+        $objController->delete($arrayUrl[1] ?? null);
+        break;
+
+    case 'edit':
+        $objController = new AnnonceController();
+        $objController->edit($arrayUrl[1] ?? null);
+        break;
+
     case 'register-success':
         require_once __DIR__ . "/../src/Views/register-success.php";
         break;

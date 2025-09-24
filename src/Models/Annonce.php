@@ -198,4 +198,40 @@ class Annonce
             return false;
         }
     }
+
+
+    /**
+     * Permet de supprimer une annonce dans la table annonces selon son id
+     * @param int $id
+     * @return bool true si la suppression a réussi, false en cas d'erreur
+     */
+    public function deleteAnnonce(int $id, int $userId): bool
+    {
+        try {
+            // Creation d'une instance de connexion à la base de données
+            $pdo = Database::createInstancePDO();
+            // test si la connexion est ok
+            if (!$pdo) {
+                // pas de connexion, on return false
+                return false;
+            }
+            // requête SQL pour supprimer une annonce dans la table annonces
+            $sql = 'DELETE FROM `annonces` WHERE `a_id` = :id AND `u_id` = :userId';
+            // On prépare la requête avant de l'exécuter
+            $stmt = $pdo->prepare($sql);
+            // on associe chaque paramètre nommé de la requête (:id, :userId
+            // avec la valeur correspondante en PHP, en précisant leur type (ici int).
+            // grâce aux requêtes préparées, cela empêche toute injection SQL.
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+            // On exécute la requête préparée. La méthode renvoie true si tout s’est bien passé,
+            // false sinon. 
+            // NB : Avec PDO configuré en mode ERRMODE_EXCEPTION, une erreur déclenchera                                
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            // test unitaire pour connaitre la raison de l'echec
+            // echo 'Erreur : ' . $e->getMessage();
+            return false;
+        }
+    }
 }
