@@ -21,6 +21,11 @@ switch ($page) {
         $objController->index();
         break;
 
+    case 'annonces':
+        $objController = new AnnonceController();
+        $objController->index();
+        break;
+
     case 'register':
         $objController = new UserController();
         $objController->register();

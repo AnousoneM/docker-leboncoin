@@ -14,7 +14,7 @@ class AnnonceController
     public function index(): void
     {
         $objAnnonce = new Annonce();
-        $annonces = $objAnnonce->findAll();
+        $allAnnonces = $objAnnonce->findAll();
         require_once __DIR__ . "/../Views/annonces.php";
     }
 
