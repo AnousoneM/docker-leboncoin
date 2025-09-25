@@ -1,7 +1,6 @@
 <div class="row justify-content-center m-0">
 
     <div class="col-10 border">
-        <!-- <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary shadow px-4"> -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow px-4 fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand coiny-regular" href="index.php">AFPA'nnonces</a>
@@ -12,7 +11,7 @@
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="btn btn-warning" aria-current="page" href="index.php?url=create"><i class="bi bi-plus-circle me-2"></i>Créer une annonce</a>
+                            <a class="btn btn-warning" aria-current="page" href="index.php?url=create"><i class="bi bi-plus-circle me-2"></i>Déposer une annonce</a>
                         </li>
                     </ul>
 

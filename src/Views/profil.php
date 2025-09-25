@@ -58,8 +58,9 @@
 
                                 <div class="card-body row">
                                     <div class="border p-2 col-10">
-                                        <p class="h5 card-title"><?= $annonce['a_title'] ?></p>
+                                        <p class="h5 card-title text-truncate"><?= $annonce['a_title'] ?></p>
                                         <p class="card-text fw-bold"><?= $annonce['a_price'] . '€' ?></p>
+                                        <p class="m-0 text-secondary"><?= (new DateTime($annonce['a_publication']))->format('d/m/Y') ?></p>
                                     </div>
                                     <div class="border col-2 d-flex flex-column align-items-center justify-content-center p-2">
                                         <i class="bi bi-heart fs-3"></i>

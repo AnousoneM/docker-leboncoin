@@ -76,7 +76,7 @@ class Annonce
             }
 
             // requête SQL pour récupérer toutes les annonces dans la table annonces
-            $sql = 'SELECT `a_id`, `a_title`, `a_description`, `a_picture`, `a_price`, `a_publication`, `u_username` FROM `annonces` INNER JOIN `users` ON `annonces`.`u_id` = `users`.`u_id` WHERE `a_id` = :id ORDER BY `a_publication` DESC';
+            $sql = 'SELECT `a_id`, `a_title`, `a_description`, `a_picture`, `a_price`, `a_publication`, `u_username`, `annonces`.`u_id` FROM `annonces` INNER JOIN `users` ON `annonces`.`u_id` = `users`.`u_id` WHERE `a_id` = :id ORDER BY `a_publication` DESC';
 
             // On prépare la requête avant de l'exécuter
             $stmt = $pdo->prepare($sql);

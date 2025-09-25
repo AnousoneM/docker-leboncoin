@@ -33,16 +33,16 @@
                 <div class="row mt-3">
                     <?php foreach ($allAnnonces as $index => $annonce) {
                     ?>
-                        <div class="col-md-4 mb-4">
+                        <div class="col-lg-3 mb-4">
                             <a href="index.php?url=details/<?= $annonce['a_id'] ?>" class="text-decoration-none">
                                 <div class="card h-100">
                                     <img src="/uploads/<?= $annonce['a_picture'] ?? 'no_picture.png' ?>" class="img-annonce" alt="Image aléatoire">
 
                                     <div class="card-body row">
                                         <div class="border p-2 col-10">
-                                            <p class="h5 card-title"><?= $annonce['a_title'] ?></p>
+                                            <p class="card-title text-truncate"><?= $annonce['a_title'] ?></p>
                                             <p class="card-text fw-bold"><?= $annonce['a_price'] . '€' ?></p>
-                                            <p class="m-0"><?= (new DateTime($annonce['a_publication']))->format('d/m/Y') ?></p>
+                                            <p class="m-0 text-secondary"><?= (new DateTime($annonce['a_publication']))->format('d/m/Y') ?></p>
                                         </div>
                                         <div class="border col-2 d-flex flex-column align-items-center justify-content-center p-2">
                                             <i class="bi bi-heart fs-3"></i>
@@ -51,10 +51,7 @@
                                 </div>
                             </a>
                         </div>
-                    <?php
-                        // on affiche seulement 3 annonces à l'aide de l'index
-                        if ($index == (3 - 1)) break;
-                    } ?>
+                    <?php } ?>
                 </div>
 
                 <div class="text-center mb-4">
@@ -62,7 +59,7 @@
                 </div>
 
             </div>
-            
+
         </div>
     </main>
 

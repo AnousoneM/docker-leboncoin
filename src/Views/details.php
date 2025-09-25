@@ -64,6 +64,31 @@
                     <button class="btn btn-warning w-100 my-1">Acheter</button>
                     <button class="btn btn-outline-primary w-100 my-1">Faire une offre</button>
                     <button class="btn btn-primary w-100 my-1">Contacter</button>
+                    <?php if (isset($_SESSION['user']['id']) && $_SESSION['user']['id'] == $annonce["u_id"]) { ?>
+                        <div class="mt-4 border border-secondary rounded p-3">
+                            <a href="#" class="btn btn-secondary w-100 my-1">Modifier</a>
+                            <a href="#" class="btn btn-danger w-100 my-1" data-bs-toggle="modal" data-bs-target="#deleteModal">Supprimer</a>
+                        </div>
+
+                        <!-- Modal de confirmation -->
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Vous souhaitez supprimer : <b><?= $annonce["a_title"] ?></b>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
 
