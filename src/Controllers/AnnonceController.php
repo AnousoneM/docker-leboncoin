@@ -183,12 +183,9 @@ class AnnonceController
         if ($annonce === false) {
             header("Location: index.php?url=page404");
             exit;
-        }
-
-        // on vérifie que l'utilisateur connecté est bien le propriétaire de l'annonce
-        if ($annonce['user_id'] != $_SESSION['user']['id']) {
-            header("Location: index.php?url=profil");
-            exit;
+        } else {
+            // nous allons stocker l'image dans une variable pour la supprimer par la suite
+            $annoncePicture = $annonce['a_picture'];
         }
 
         // nous allons tenter de supprimer l'annonce via un if pour gérer les erreurs
