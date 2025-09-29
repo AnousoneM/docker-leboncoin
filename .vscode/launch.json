@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Ecouter Xdebug",
+            "name": "Ecouter Xdebug (docker)",
             "type": "php",
             "request": "launch",
-            "port": 9005,
+            "port": 9003,
             "pathMappings": {
                 "/var/www": "${workspaceFolder}"
             }
