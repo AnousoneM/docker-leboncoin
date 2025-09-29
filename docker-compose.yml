@@ -9,7 +9,7 @@ services:
       - ./:/var/www
     ports:
       - "8000:80"
-      - "9003:9003"
+      - "9005:9005"
     depends_on:
       - db
     environment:
