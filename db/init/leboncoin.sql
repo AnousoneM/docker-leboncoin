@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : mer. 24 sep. 2025 à 11:34
+-- Généré le : lun. 29 sep. 2025 à 08:50
 -- Version du serveur : 8.0.43
 -- Version de PHP : 8.2.27
 
@@ -29,6 +29,7 @@ USE `leboncoin`;
 -- Structure de la table `annonces`
 --
 
+DROP TABLE IF EXISTS `annonces`;
 CREATE TABLE IF NOT EXISTS `annonces` (
   `a_id` int NOT NULL AUTO_INCREMENT,
   `a_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -39,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `annonces` (
   `u_id` int NOT NULL,
   PRIMARY KEY (`a_id`),
   KEY `u_id` (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `annonces`
@@ -55,7 +56,11 @@ INSERT INTO `annonces` (`a_id`, `a_title`, `a_description`, `a_price`, `a_pictur
 (8, 'zae', 'aze', 12.00, NULL, '2025-09-22 13:09:55', 3),
 (9, 'Made by Akasa', 'Made by Me', 34.00, '68d19019af767.png', '2025-09-22 18:06:17', 1),
 (10, 'Premier POST', 'Super POST', 34.00, '68d2564acbfd1.png', '2025-09-23 08:11:54', 4),
-(11, 'Bim Bam Boum', 'Badabooooummmmm', 45.00, '68d2976258cd6.png', '2025-09-23 12:49:38', 4);
+(11, 'Bim Bam Boum', 'Badabooooummmmm', 45.00, '68d2976258cd6.png', '2025-09-23 12:49:38', 4),
+(12, 'aze', 'aze', 12.00, NULL, '2025-09-24 15:36:11', 4),
+(13, 'azeaze', 'azeaze', 12.00, NULL, '2025-09-24 15:37:15', 4),
+(14, 'Super affiche de promotion', 'Vends affiche vintage, pour promouvoir une application crée en DWWM', 34.00, '68d50a51e57a9.png', '2025-09-25 09:24:33', 2),
+(15, 'azeaze aze aze az eaze aze aze aze aze az e', 'azeaze', 34.00, NULL, '2025-09-25 20:55:04', 1);
 
 -- --------------------------------------------------------
 
@@ -63,20 +68,15 @@ INSERT INTO `annonces` (`a_id`, `a_title`, `a_description`, `a_price`, `a_pictur
 -- Structure de la table `favoris`
 --
 
+DROP TABLE IF EXISTS `favoris`;
 CREATE TABLE IF NOT EXISTS `favoris` (
+  `f_id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `annonce_id` int NOT NULL,
+  PRIMARY KEY (`f_id`),
   UNIQUE KEY `uniq_user_annonce` (`user_id`,`annonce_id`),
   KEY `fk_favoris_annonce` (`annonce_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `favoris`
---
-
-INSERT INTO `favoris` (`user_id`, `annonce_id`) VALUES
-(3, 9),
-(3, 11);
 
 -- --------------------------------------------------------
 
@@ -84,6 +84,7 @@ INSERT INTO `favoris` (`user_id`, `annonce_id`) VALUES
 -- Structure de la table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `u_id` int NOT NULL AUTO_INCREMENT,
   `u_email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
