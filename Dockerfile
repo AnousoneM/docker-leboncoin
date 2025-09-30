@@ -9,9 +9,11 @@ RUN apt-get update && apt-get install -y \
     git \
     zip \
     && docker-php-ext-install \
-    pdo \
-    pdo_mysql \
-    intl \
+        pdo \
+        pdo_mysql \
+        intl \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Nettoyage d’une éventuelle config xdebug activée par défaut
