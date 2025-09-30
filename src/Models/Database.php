@@ -15,11 +15,20 @@ class Database
      */
     public static function createInstancePDO(): PDO|null
     {
-        // on déclare des variables : il s'agit des paramètres de notre container docker
-        $db_host = 'db';
-        $db_name = 'leboncoin';
-        $db_user = 'root';
-        $db_password = 'root';
+
+        // Charger le fichier .env
+        $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
+        $dotenv->load();
+
+        // Variables communes
+        $db_host = $_ENV['DB_HOST'];
+        $db_user = $_ENV['DB_USER'];
+        $db_password = $_ENV['DB_PASS'];
+
+        // On choisit la base selon APP_ENV
+        $db_name = $_ENV['APP_ENV'] === 'test'
+            ? $_ENV['DB_NAME_TEST']
+            : $_ENV['DB_NAME_DEV'];
 
         try {
             // j'utilise les variables plus haut
