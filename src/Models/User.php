@@ -46,7 +46,7 @@ class User
             // Grâce aux requêtes préparées, cela empêche toute injection SQL.
             $stmt->bindValue(':email', $email, PDO::PARAM_STR);
             $stmt->bindValue(':password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
-            $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+            $stmt->bindValue(':username', htmlspecialchars($username), PDO::PARAM_STR);
 
             // On exécute la requête préparée. La méthode renvoie true si tout s’est bien passé,
             // false sinon. 
