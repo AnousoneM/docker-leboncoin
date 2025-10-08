@@ -163,11 +163,6 @@ class AnnonceController
 
     public function delete(?int $id): void
     {
-        // on vérifie que l'id est bien un nombre entier et qu'il n'est pas null
-        if (is_null($id) || !is_int($id)) {
-            header("Location: index.php?url=page404");
-            exit;
-        }
 
         // on contrôle si une variable de session User est présente
         if (!isset($_SESSION["user"])) {
@@ -175,45 +170,55 @@ class AnnonceController
             exit;
         }
 
-        // on instancie un objet Annonce
-        $objAnnonce = new Annonce();
-        $annonce = $objAnnonce->findById($id);
+        // traitement du delete uniquement si il y a eu un POST = action de la part de l'utilisateur
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        // si l'annonce n'existe pas, on redirige vers la page 404
-        if ($annonce === false) {
-            header("Location: index.php?url=page404");
-            exit;
-        } else {
-            // nous allons stocker l'image dans une variable pour la supprimer par la suite
-            $annoncePicture = $annonce['a_picture'];
-        }
-
-        // nous allons tenter de supprimer l'annonce via un if pour gérer les erreurs
-        if ($objAnnonce->deleteAnnonce($id, $_SESSION['user']['id'])) {
-
-            // si l'annonce possède une photo, nous allons la supprimer du dossier uploads
-            if (!is_null($annonce['picture'])) {
-                $photoPath = __DIR__ . "/../../public/uploads/" . $annonce['picture'];
-                // on vérifie que le fichier existe avant de le supprimer
-                if (file_exists($photoPath)) {
-                    unlink($photoPath);
-                }
+            // on vérifie que l'id est bien un nombre entier et qu'il n'est pas null
+            if (is_null($id) || !is_int($id)) {
+                header("Location: index.php?url=page404");
+                exit;
             }
 
-            // je vais créer une variable de session temporaire pour afficher un message sur la page profil : il s'agit d'un tableau avec le message et le type de message bootstrap
-            $_SESSION['message'] = ["message" => "Votre annonce a bien été supprimée", "message_type" => "success"];
+            // on instancie un objet Annonce
+            $objAnnonce = new Annonce();
+            $annonce = $objAnnonce->findById($id);
 
-            header('Location: index.php?url=profil');
-            exit;
-        } else {
-            $_SESSION['message'] = ["message" => "Une erreur s'est produite, veuillez réessayer ultérieurement", "message_type" => "warning"];
-            header('Location: index.php?url=profil');
-            exit;
+            // si l'annonce n'existe pas, on redirige vers la page 404
+            if ($annonce === false) {
+                header("Location: index.php?url=page404");
+                exit;
+            } else {
+                // nous allons stocker l'image dans une variable pour la supprimer par la suite
+                $annoncePicture = $annonce['a_picture'];
+            }
+
+            // nous allons tenter de supprimer l'annonce via un if pour gérer les erreurs
+            if ($objAnnonce->deleteAnnonce($id, $_SESSION['user']['id'])) {
+
+                // si l'annonce possède une photo, nous allons la supprimer du dossier uploads
+                if (!is_null($annonce['a_picture'])) {
+                    $photoPath = __DIR__ . "/../../public/uploads/" . $annonce['a_picture'];
+                    // on vérifie que le fichier existe avant de le supprimer
+                    if (file_exists($photoPath)) {
+                        unlink($photoPath);
+                    }
+                }
+
+                // je vais créer une variable de session temporaire pour afficher un message sur la page profil : il s'agit d'un tableau avec le message et le type de message bootstrap
+                $_SESSION['message'] = ["message" => "Votre annonce a bien été supprimée", "message_type" => "danger"];
+
+                header('Location: index.php?url=profil');
+                exit;
+            } else {
+                $_SESSION['message'] = ["message" => "Une erreur s'est produite, veuillez réessayer ultérieurement", "message_type" => "warning"];
+                header('Location: index.php?url=profil');
+                exit;
+            }
         }
     }
 
-    public function edit(?int $id): void {
+    public function edit(?int $id): void
+    {
         require_once __DIR__ . "/../Views/edit.php";
     }
 }
-

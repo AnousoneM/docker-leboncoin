@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : lun. 29 sep. 2025 à 08:50
+-- Généré le : mer. 08 oct. 2025 à 07:01
 -- Version du serveur : 8.0.43
 -- Version de PHP : 8.2.27
 
@@ -30,17 +30,15 @@ USE `leboncoin`;
 --
 
 DROP TABLE IF EXISTS `annonces`;
-CREATE TABLE IF NOT EXISTS `annonces` (
-  `a_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `annonces` (
+  `a_id` int NOT NULL,
   `a_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `a_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `a_price` decimal(10,2) NOT NULL,
   `a_picture` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `a_publication` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `u_id` int NOT NULL,
-  PRIMARY KEY (`a_id`),
-  KEY `u_id` (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `u_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `annonces`
@@ -69,13 +67,10 @@ INSERT INTO `annonces` (`a_id`, `a_title`, `a_description`, `a_price`, `a_pictur
 --
 
 DROP TABLE IF EXISTS `favoris`;
-CREATE TABLE IF NOT EXISTS `favoris` (
-  `f_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `favoris` (
+  `f_id` int NOT NULL,
   `user_id` int NOT NULL,
-  `annonce_id` int NOT NULL,
-  PRIMARY KEY (`f_id`),
-  UNIQUE KEY `uniq_user_annonce` (`user_id`,`annonce_id`),
-  KEY `fk_favoris_annonce` (`annonce_id`)
+  `annonce_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -85,16 +80,13 @@ CREATE TABLE IF NOT EXISTS `favoris` (
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `u_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `u_id` int NOT NULL,
   `u_email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `u_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `u_username` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `u_inscription` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`u_id`),
-  UNIQUE KEY `u_email` (`u_email`),
-  UNIQUE KEY `u_username` (`u_username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `u_inscription` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -105,6 +97,55 @@ INSERT INTO `users` (`u_id`, `u_email`, `u_password`, `u_username`, `u_inscripti
 (2, 'zenitsu@mail.fr', '$2y$10$DtdNNW3mjvw3.GvObnigPe4pGZUbiTf.os255eEAPglV4kgQT2rSm', 'zenitsu', '2025-09-17 11:24:28'),
 (3, 'pseudo@mail.fr', '$2y$10$9.b1ua86Ew7BFq2qfsCtXeAH.66NfkhBbLqP0hKIbGeVcP92djHf2', 'pseudo', '2025-09-22 09:27:51'),
 (4, 'john@mail.fr', '$2y$10$tUgx0f.c/SNYbmPkLIkHceR8Y.3gKGv6xIhu9fc1gRq/g8nrE78hO', 'john', '2025-09-23 08:10:25');
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `annonces`
+--
+ALTER TABLE `annonces`
+  ADD PRIMARY KEY (`a_id`),
+  ADD KEY `u_id` (`u_id`);
+
+--
+-- Index pour la table `favoris`
+--
+ALTER TABLE `favoris`
+  ADD PRIMARY KEY (`f_id`),
+  ADD UNIQUE KEY `uniq_user_annonce` (`user_id`,`annonce_id`),
+  ADD KEY `fk_favoris_annonce` (`annonce_id`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`u_id`),
+  ADD UNIQUE KEY `u_email` (`u_email`),
+  ADD UNIQUE KEY `u_username` (`u_username`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `annonces`
+--
+ALTER TABLE `annonces`
+  MODIFY `a_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT pour la table `favoris`
+--
+ALTER TABLE `favoris`
+  MODIFY `f_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `u_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Contraintes pour les tables déchargées
