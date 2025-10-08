@@ -66,7 +66,7 @@
                     <button class="btn btn-primary w-100 my-1">Contacter</button>
                     <?php if (isset($_SESSION['user']['id']) && $_SESSION['user']['id'] == $annonce["u_id"]) { ?>
                         <div class="mt-4 border border-secondary rounded p-3">
-                            <a href="#" class="btn btn-secondary w-100 my-1">Modifier</a>
+                            <a href="index.php?url=edit/<?= $annonce["a_id"] ?>" class="btn btn-secondary w-100 my-1">Modifier</a>
                             <a href="#" class="btn btn-danger w-100 my-1" data-bs-toggle="modal" data-bs-target="#deleteModal">Supprimer</a>
                         </div>
 

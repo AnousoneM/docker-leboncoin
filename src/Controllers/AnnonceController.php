@@ -206,10 +206,11 @@ class AnnonceController
 
                 // je vais créer une variable de session temporaire pour afficher un message sur la page profil : il s'agit d'un tableau avec le message et le type de message bootstrap
                 $_SESSION['message'] = ["message" => "Votre annonce a bien été supprimée", "message_type" => "danger"];
-
+                // je fais ensuite une redirection vers la page profil
                 header('Location: index.php?url=profil');
                 exit;
             } else {
+                // en cas d'erreur lors de la suppression, je crée une variable de session temporaire pour afficher un message sur la page profil : il s'agit d'un tableau avec le message et le type de message bootstrap
                 $_SESSION['message'] = ["message" => "Une erreur s'est produite, veuillez réessayer ultérieurement", "message_type" => "warning"];
                 header('Location: index.php?url=profil');
                 exit;
@@ -219,6 +220,36 @@ class AnnonceController
 
     public function edit(?int $id): void
     {
+        // on contrôle si une variable de session User est présente
+        if (!isset($_SESSION["user"])) {
+            header("Location: index.php?url=login");
+            exit;
+        }
+        // on vérifie que l'id est bien un nombre entier et qu'il n'est pas null
+        if (is_null($id) || !is_int($id)) {
+            header("Location: index.php?url=page404");
+            exit;
+        }   
+        // on instancie un objet Annonce
+        $objAnnonce = new Annonce();
+        $annonce = $objAnnonce->findById($id);
+        
+        // si l'annonce n'existe pas, on redirige vers la page 404
+        if ($annonce === false) {
+            header("Location: index.php?url=page404");
+            exit;
+        }
+        // on vérifie que l'utilisateur connecté est bien le propriétaire de l'annonce
+        if ($annonce['u_id'] !== $_SESSION['user']['id']) {
+            header("Location: index.php?url=profil");
+            exit;
+        }
+        // on vérifie que l'utilisateur connecté est bien le propriétaire de l'annonce
+        if ($annonce['u_id'] !== $_SESSION['user']['id']) {
+            header("Location: index.php?url=profil");
+            exit;
+        }
+        
         require_once __DIR__ . "/../Views/edit.php";
     }
 }

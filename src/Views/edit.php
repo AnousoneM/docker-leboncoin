@@ -34,7 +34,7 @@
 
 
             <div class="col-6">
-                <img src="<?= $annonce['picture'] ?>" alt="">
+                <img src="uploads/<?= $annonce['a_picture'] ?? 'no_picture.png' ?>" class="img-fluid" alt="Image de l'annonce">
             </div>
 
             <div class="col-6">
@@ -43,7 +43,7 @@
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Titre</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["title"] ?? '' ?></span>
-                        <input type="text" class="form-control" id="title" name="title" value="<?= $_POST["title"] ?? "" ?>">
+                        <input type="text" class="form-control" id="title" name="title" value="<?= $_POST["title"] ?? $annonce['a_title'] ?>">
                     </div>
 
                     <div class="mb-3">
@@ -53,16 +53,16 @@
 
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["description"] ?? '' ?></span>
-                        <textarea class="form-control" id="description" name="description" rows="3"><?= $_POST["description"] ?? "" ?></textarea>
+                        <textarea class="form-control" id="description" name="description" rows="3"><?= $_POST["description"] ?? $annonce['a_description'] ?></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="price" class="form-label">Prix</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["price"] ?? '' ?></span>
                         <!-- ici le prix sera en text pour faciliter le traitement et également l'affichage -->
-                        <input type="text" class="form-control" id="price" name="price" value="<?= $_POST["price"] ?? "" ?>">
+                        <input type="text" class="form-control" id="price" name="price" value="<?= $_POST["price"] ?? $annonce['a_price'] ?>">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Mettre en ligne</button>
+                    <button type="submit" class="btn btn-warning">Modifier</button>
 
                     <a class="btn btn-secondary" href="index.php">Annuler</a>
                     <span class="ms-2 text-danger fst-italic fw-light"><?= $errors["creation"] ?? '' ?></span>

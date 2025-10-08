@@ -36,7 +36,7 @@
         // module pour afficher un message flash, on verifie si la variable de session existe.
         if (isset($_SESSION['message'])) {
             echo '<div class="alert alert-' . $_SESSION['message']['message_type'] . '" role="alert">' . $_SESSION['message']['message'] . '</div>';
-            // on supprime la variable de session
+            // on supprime la variable de session pour ne pas afficher le message à chaque rechargement de la page
             unset($_SESSION['message']);
         }
         ?>
