@@ -18,6 +18,11 @@ class AnnonceController
         require_once __DIR__ . "/../Views/annonces.php";
     }
 
+    /**
+     * Méthode gérant la création d'une annonce
+     *
+     * @return void
+     */
     public function create(): void
     {
 
@@ -128,7 +133,7 @@ class AnnonceController
                         move_uploaded_file($file, $uploadsDir . $pictureName);
                     }
                     // je vais créer une variable de session temporaire pour afficher un message sur la page profil : il s'agit d'un tableau avec le message et le type de message bootstrap
-                    $_SESSION['message'] = ["message" => "Votre annonce a bien été créée", "message_type" => "primary"];
+                    $_SESSION['message'] = ["message" => "Votre annonce a bien été créée", "message_type" => "success"];
 
                     header('Location: index.php?url=profil');
                     exit;
@@ -140,6 +145,12 @@ class AnnonceController
         require_once __DIR__ . "/../Views/create.php";
     }
 
+    /**
+     * Méthode affichant le détail d'une annonce
+     *
+     * @param int|null $id
+     * @return void
+     */
     public function show(?int $id): void
     {
         // on vérifie que l'id est bien un nombre entier et qu'il n'est pas null
@@ -161,6 +172,12 @@ class AnnonceController
         require_once __DIR__ . "/../Views/details.php";
     }
 
+    /**
+     * Méthode gérant la suppression d'une annonce
+     *
+     * @param int|null $id
+     * @return void
+     */
     public function delete(?int $id): void
     {
 
@@ -218,6 +235,12 @@ class AnnonceController
         }
     }
 
+    /**
+     * Méthode gérant la modification d'une annonce
+     *
+     * @param int|null $id
+     * @return void
+     */
     public function edit(?int $id): void
     {
         // on contrôle si une variable de session User est présente
