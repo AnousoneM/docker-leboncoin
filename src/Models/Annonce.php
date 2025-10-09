@@ -234,4 +234,54 @@ class Annonce
             return false;
         }
     }
+
+    /**
+     * Permet de modifier une annonce dans la table annonces selon son id
+     * @param int $id
+     * @param string $title
+     * @param string $description
+     * @param float $price
+     * @param string|null $picture
+     * @param int $userId
+     * @return bool true si la modification a réussi, false en cas d'erreur
+     */
+    public function updateAnnonce(int $id, string $title, string $description, float $price, ?string $picture, int $userId): bool
+    {
+        try {
+            // Creation d'une instance de connexion à la base de données
+            $pdo = Database::createInstancePDO();
+
+            // test si la connexion est ok
+            if (!$pdo) {
+                // pas de connexion, on return false
+                return false;
+            }
+
+            // requête SQL pour modifier une annonce dans la table annonces
+            $sql = 'UPDATE `annonces` SET `a_title` = :title, `a_description` = :description, `a_price` = :price, `a_picture` = :picture WHERE `a_id` = :id AND `u_id` = :userId';
+
+            // On prépare la requête avant de l'exécuter
+            $stmt = $pdo->prepare($sql);
+
+            // on associe chaque paramètre nommé de la requête (:id, :title, :description, :price, :picture, :userId)
+            // avec la valeur correspondante en PHP, en précisant leur type (ici string).
+            // grâce aux requêtes préparées, cela empêche toute injection SQL.
+            // nous utilisons également htmlspecialchar pour rendre tout code html innofensif
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':title', htmlspecialchars($title), PDO::PARAM_STR);
+            $stmt->bindValue(':description', htmlspecialchars($description), PDO::PARAM_STR);
+            $stmt->bindValue(':price', $price, PDO::PARAM_STR);
+            $stmt->bindValue(':picture', $picture, PDO::PARAM_STR);
+            $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+
+            // On exécute la requête préparée. La méthode renvoie true si tout s’est bien passé,
+            // false sinon. 
+            // NB : Avec PDO configuré en mode ERRMODE_EXCEPTION, une erreur déclenchera une exception.
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            // test unitaire pour connaitre la raison de l'echec
+            // echo 'Erreur : ' . $e->getMessage();
+            return false;
+        }
+    }
 }

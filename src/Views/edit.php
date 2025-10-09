@@ -39,7 +39,7 @@
 
             <div class="col-6">
 
-                <form action="index.php?url=create" method="POST" enctype="multipart/form-data" novalidate>
+                <form action="index.php?url=edit/<?= $annonce['a_id'] ?>" method="POST" enctype="multipart/form-data" novalidate>
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Titre</label><span class="ms-2 text-danger fst-italic fw-light"><?= $errors["title"] ?? '' ?></span>
