@@ -3,7 +3,7 @@
         'name' => 'amounivongs/docker-leboncoin',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '5d7f9128d43400b69ef569f744027a05f828d5f0',
+        'reference' => '18dae4c0b6a2fdbfe1dfbde75da06a6adec4c887',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'amounivongs/docker-leboncoin' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '5d7f9128d43400b69ef569f744027a05f828d5f0',
+            'reference' => '18dae4c0b6a2fdbfe1dfbde75da06a6adec4c887',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -63,6 +63,15 @@
             'install_path' => __DIR__ . '/../phar-io/version',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'phpmailer/phpmailer' => array(
+            'pretty_version' => 'v7.0.1',
+            'version' => '7.0.1.0',
+            'reference' => '360ae911ce62e25e11249f6140fa58939f556ebe',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpmailer/phpmailer',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'phpoption/phpoption' => array(
             'pretty_version' => '1.9.4',

@@ -76,6 +76,14 @@
 
         </div>
 
+        <div class="row mt-3">
+            <form action="">
+                <label class="d-block" for="commentaire">Commentaire mail</label>
+                <textarea id="commentaires" name="commentaire" class="d-block"></textarea>
+                <button class="btn btn-secondary mt-2 mb-5">Envoyer MAIL</button>
+            </form>
+        </div>
+
     </main>
 
     <?php include_once __DIR__ . "/templates/footer.php" ?>
