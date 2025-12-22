@@ -267,11 +267,6 @@ class AnnonceController
             header("Location: index.php?url=profil");
             exit;
         }
-        // on vérifie que l'utilisateur connecté est bien le propriétaire de l'annonce
-        if ($annonce['u_id'] !== $_SESSION['user']['id']) {
-            header("Location: index.php?url=profil");
-            exit;
-        }
 
         // traitement du formulaire en cas de POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
